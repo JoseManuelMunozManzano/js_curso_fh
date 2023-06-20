@@ -2,6 +2,8 @@
 
 Del curso JavaScript de DevTalles: https://cursos.devtalles.com/courses/javascript-moderno
 
+Ver también: https://github.com/JoseManuelMunozManzano/node_curso_fh/tree/main/02-fundamentos_js
+
 ### 01-Fundamentos
 
 Inicio del curso de JavaScript viendo lo más básico.

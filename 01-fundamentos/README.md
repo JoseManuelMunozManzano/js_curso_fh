@@ -24,3 +24,7 @@ node app.js
 ```
 doble click en archivo index.html
 ```
+
+### 2.variables
+
+No hay nada que hacer, solo ver el código fuente.
