@@ -22,9 +22,17 @@ node app.js
 - Ejecutar JavaScript con script incrustado en fuente html
 
 ```
-doble click en archivo index.html
+doble click en archivo index.html y ver la consola
 ```
 
 ### 2.variables
 
 No hay nada que hacer, solo ver el código fuente.
+
+### 3.console
+
+Para ejecutar:
+
+```
+doble click en archivo index.html y ver la consola
+```
