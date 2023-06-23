@@ -32,3 +32,14 @@
   const saludo = c1 + d1;
   console.log(saludo);
 })();
+
+// Utilizando var la variable la estamos colocando en un objeto global llamado window y es mala práctica.
+var miNombre = 'José Manuel';
+console.log({ miNombre: window.miNombre });
+
+// NOTA: Para tener más ordenado nuestro proyecto se suele crear una estructura de directorios de la siguiente manera:
+//    assets
+//       css
+//       js     --> Aquí irá nuestro código JavaScript
+//
+// Esto también depende mucho de la librería o framework utilizado.
