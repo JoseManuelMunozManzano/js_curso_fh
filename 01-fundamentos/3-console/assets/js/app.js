@@ -37,6 +37,29 @@
 var miNombre = 'José Manuel';
 console.log({ miNombre: window.miNombre });
 
+// Primer problema del uso de var
+//
+// Es mala práctica porque sin saberlo podemos sustituir una variable que existe en window, por ejemplo outerWidth.
+// Y ese es el valor que va a tener, aunque no tenga nada que ver con el dato que debería mostrar en realidad, en
+// este caso el ancho de la ventana.
+// Esto hace que ocurran errores muy difíciles de corregir.
+//
+// Para evitar este problema, usar siempre let o const para definir variables, ya que no sobreescriben las variables
+// que se encuentran en el objeto global window
+var outerWidth = 1000000;
+
+// Segundo problema del uso de var
+//
+// Puedo declarar una variable DESPUES de usarla!!
+// Con esto no da error de variable no definida, que es un error que está bien, sino que el resultado es undefined.
+// Definiendo abajo la variable con let, SI que da un error muy descriptivo:
+// Cannot access 'miNuevoNombre' before initilization
+console.log(miNuevoNombre);
+
+var miNuevoNombre = 'Adriana';
+
+// Así que ahora mismo solo se usa var para incrementar la compatibilidad con navegadores antiguos.
+
 // NOTA: Para tener más ordenado nuestro proyecto se suele crear una estructura de directorios de la siguiente manera:
 //    assets
 //       css
