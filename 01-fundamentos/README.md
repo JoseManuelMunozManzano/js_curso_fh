@@ -81,3 +81,12 @@ Para ejecutar:
 descomentar el script a probar (index.js o index2.js) en index.html
 doble click en archivo index.html y ver la consola
 ```
+
+### 6.objetos-literales
+
+Para ejecutar:
+
+```
+descomentar su script en index.html
+doble click en archivo index.html y ver la consola
+```
