@@ -63,9 +63,11 @@
 
   //? Tercera forma de definir funciones.
   // Usando funciones de flecha o lambda functions.
+  // También son funciones anónimas.
   // Introducidas en el ES6 o JavaScript del 2015.
   // Es la forma recomendada de crear funciones. Son más eficientes que las funciones tradicionales y
   // evitan los problemas del objeto this.
+  // La función se asigna a una constante y no a let porque no va a cambiar nunca.
   const saludarFlecha = (nombre) => {
     console.log('SaludarFlecha - Hola ' + nombre);
   };
@@ -74,4 +76,32 @@
   saludarFlecha();
   saludarFlecha('Adri');
   saludarFlecha('José Manuel');
+
+  //? RETORNO DE LAS FUNCIONES.
+  // Si no se indica un return de algo (primitivo, array u objeto), por defecto una función devuelve undefined.
+  // Lo que haya después de la ejecución de un return no se va a ejecutar nunca.
+  // Puede haber más de un return en una función, separados por lógica que hará que se ejecute uno u otro.
+  function saludar4(nombre) {
+    console.log('Hola');
+    return 1;
+
+    console.log('Esto no se ejecuta nunca');
+  }
+
+  const resultado = saludar4();
+  console.log(resultado);
+
+  // Ejemplo de función de flecha con return implícito.
+  const sumar = (a, b) => {
+    return a + b;
+  };
+  console.log(sumar(1, 2));
+
+  // Si la función de flecha SOLO tiene una línea, y además es el return, se puede resumir a esto.
+  // El código es más limpio.
+  const sumar2 = (a, b) => a + b;
+
+  // Otro ejemplo de función.
+  const getAleatorio = () => Math.random();
+  console.log(getAleatorio());
 })();
