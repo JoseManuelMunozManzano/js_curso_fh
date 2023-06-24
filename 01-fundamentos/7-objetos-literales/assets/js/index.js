@@ -3,8 +3,10 @@
 // En otros lenguajes de programación se les llama diccionarios.
 //
 // Los valores de los objetos literales se escriben entre llaves, {llave1: valor1, llave2: valor2, ..., llaven: valorn}
+//
+// https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Object
 (() => {
-  let personaje = {
+  const personaje = {
     nombre: 'Tony Stark',
     codeName: 'Ironman',
     vivo: false,
@@ -63,4 +65,64 @@
 
   // Para recuperar una propiedad que contiene espacios o el guión, hay que hacerlo usando la notación de corchete obligatoriamente.
   console.log('Última película:', personaje['ultima pelicula']);
+
+  // Borrar una propiedad de un objeto literal.
+  delete personaje.edad;
+  console.log(personaje);
+
+  // Crear una nueva propiedad en el objeto durante la ejecución.
+  personaje.casado = true;
+
+  // Trabajar un objeto como si fuera un arreglo, es decir, nombre: 'Tony Stark' sea la posición 0, ...
+  // En consola se ve:
+  //     0: ['nombre', 'Tony Stark']
+  //     1: ['codeName', 'Ironman']
+  //     ...
+  // Notar que se visualizan en el orden en que fueron creadas, no por orden alfabético.
+  // Muy útil para obtener los valores de las claves, por ejemplo.
+  const entriesPares = Object.entries(personaje);
+  console.log(entriesPares);
+
+  // Evitar que las propiedades del objeto puedan mutar.
+  //
+  // NOTA IMPORTANTE: Declarando el objeto como constante, lo que se impide es volver a ASIGNAR un valor a personaje,
+  // es decir, cambiarle por completo la dirección de memoria.
+  // En concreto se impide esto:
+  // personaje = { nombre: 'Pepe' };
+  //
+  // Pero mutar las propiedades de un objeto es otra cosa.
+  // Si yo muto nombre, por ejemplo:
+  //    personaje.nombre = 'Peter Parker'
+  // Lo que está mutando es la dirección de memoria a la que apunta la propiedad nombre, que NO es lo mismo que cambiar
+  // la dirección de memoria a la que apunta el objeto personaje.
+  // Esto es lo que queremos decir con mutar propiedades.
+  // Y para evitar que mute:
+  Object.freeze(personaje);
+
+  // NO DA ERROR, pero NO añade la propiedad dinero al objeto literal personaje.
+  personaje.dinero = 100000000000;
+  // Tampoco va a permitir cambiar el valor de propiedades existentes.
+  personaje.nombre = 'Peter Parker';
+
+  // INCONVENIENTE: Object.freeze() congela las propiedades de primer nivel, las directas, pero NO congela las propiedades
+  // que aparecen en un objeto o array dentro del objeto personaje, es decir, las de segundo o siguiente nivel.
+  // Esto es posible:
+  personaje.coords.lat = 1;
+  personaje.trajes[1] = 'Mark IV';
+
+  // Para congelar, por ejemplo, el array trajes.
+  Object.freeze(personaje.trajes);
+  personaje.trajes[1] = 'Mark XX';
+
+  console.log(personaje);
+
+  // Listado de todas las propiedades de un objeto.
+  // Devuelve un array con los nombres de las propiedades en el orden en que fueron creadas.
+  const propiedades = Object.getOwnPropertyNames(personaje);
+  console.log(propiedades);
+
+  // Listado de todos los valores de un objeto.
+  // Devuelve un array con los valores de las propiedades en el orden en que fueron creadas.
+  const valores = Object.values(personaje);
+  console.log(valores);
 })();
