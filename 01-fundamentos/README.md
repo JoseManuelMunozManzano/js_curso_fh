@@ -82,7 +82,7 @@ descomentar el script a probar (index.js o index2.js) en index.html
 doble click en archivo index.html y ver la consola
 ```
 
-### 6.objetos-literales
+### 7.objetos-literales
 
 Para ejecutar:
 
@@ -91,7 +91,18 @@ descomentar su script en index.html
 doble click en archivo index.html y ver la consola
 ```
 
-### 7.funciones
+### 8.funciones
+
+Para ejecutar:
+
+```
+descomentar su script en index.html
+doble click en archivo index.html y ver la consola
+```
+
+### 9.protip-retorno
+
+Son tips de retornos de funciones.
 
 Para ejecutar:
 
