@@ -65,3 +65,19 @@ https://mothereff.in/
 https://mothereff.in/js-variables#%E0%B2%A0%5f%E0%B2%A0
 
 https://mathiasbynens.be/notes/javascript-identifiers
+
+Para ejecutar:
+
+```
+descomentar su script en index.html
+doble click en archivo index.html y ver la consola
+```
+
+### 6.arreglos
+
+Para ejecutar:
+
+```
+descomentar el script a probar (index.js o index2.js) en index.html
+doble click en archivo index.html y ver la consola
+```
