@@ -10,6 +10,14 @@ Vamos a ver:
 - Depuración y breakpoints
 - Problemas con la declaración de variables con var
 - Prompts, alerts, confirms.
+- ¿Qué son los primitivos?
+- Palabras reservadas
+- Arreglos
+- Objetos literales
+- Funciones básicas
+- Funciones de flecha
+- Retorno de las funciones
+- Ejercicios y ejemplos con cada tipo expuesto
 
 ### 1.hola_mundo
 
@@ -22,6 +30,7 @@ node app.js
 - Ejecutar JavaScript con script incrustado en fuente html
 
 ```
+descomentar su script en index.html
 doble click en archivo index.html y ver la consola
 ```
 
@@ -34,5 +43,25 @@ No hay nada que hacer, solo ver el código fuente.
 Para ejecutar:
 
 ```
+descomentar su script en index.html
 doble click en archivo index.html y ver la consola
 ```
+
+### 4.primitivos
+
+Explicación básica de primitivos y de la instrucción typeof
+
+Para ejecutar:
+
+```
+descomentar su script en index.html
+doble click en archivo index.html y ver la consola
+```
+
+### 5.palabras-reservadas
+
+https://mothereff.in/
+
+https://mothereff.in/js-variables#%E0%B2%A0%5f%E0%B2%A0
+
+https://mathiasbynens.be/notes/javascript-identifiers

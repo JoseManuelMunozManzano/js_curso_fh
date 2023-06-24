@@ -16,3 +16,11 @@ Vamos a ver:
 - Depuración y breakpoints
 - Problemas con la declaración de variables con var
 - Prompts, alerts, confirms.
+- ¿Qué son los primitivos?
+- Palabras reservadas
+- Arreglos
+- Objetos literales
+- Funciones básicas
+- Funciones de flecha
+- Retorno de las funciones
+- Ejercicios y ejemplos con cada tipo expuesto
