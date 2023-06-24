@@ -90,3 +90,12 @@ Para ejecutar:
 descomentar su script en index.html
 doble click en archivo index.html y ver la consola
 ```
+
+### 7.funciones
+
+Para ejecutar:
+
+```
+descomentar su script en index.html
+doble click en archivo index.html y ver la consola
+```
