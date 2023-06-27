@@ -25,6 +25,8 @@ Consta de los siguientes ficheros JavaScript:
 
 ### 02_if-else.js
 
+### 03_logica-booleana.js
+
 Para ejecutar cualquiera de los ficheros:
 
 ```
