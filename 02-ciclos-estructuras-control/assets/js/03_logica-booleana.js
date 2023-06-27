@@ -53,3 +53,40 @@ console.log('4 condiciones', true || true || true || false); // true
 
 // Por tanto, con OR, un tip sería poner primero la condición que es más posible que sea true, para que JavaScript
 // no tenga que evaluar la segunda condición.
+// O poner la primera condición a false si queremos que ejecute siempre la segunda.
+
+console.warn('Asignaciones');
+
+const soyUndefined = undefined;
+const soynull = null;
+const soyFalso = false;
+
+const a1 = true && 'Hola Mundo' && 150; // 150
+console.log({ a1 });
+
+const a2 = false && 'Hola Mundo' && 150; // false
+console.log({ a2 });
+
+const a3 = 'Hola' && 'Mundo'; // Mundo
+console.log({ a3 });
+
+const a4 = 'Hola' && 'Mundo' && soyFalso && true; // false
+console.log({ a4 });
+
+const a5 = soyFalso || 'Ya no soy falso'; // Ya no soy falso
+console.log({ a5 });
+
+const a6 = soyFalso || soyUndefined || soynull || 'Ya no soy falso de nuevo' || true; // Ya no soy falso de nuevo
+console.log({ a6 });
+
+const a7 = soyFalso || soyUndefined || regresaTrue() || 'Ya no soy falso de nuevo' || true; // true (el de la función regresaTrue())
+console.log({ a7 });
+
+// La lógica booleana, al final, donde más se usa es para evaluar un if.
+// No debería haber más de 3 condiciones. Si hay más, habría que simplificarlo.
+// Usar paréntesis en caso de duda.
+if (true || true || true || false) {
+  console.log('Hacer algo');
+} else {
+  console.log('Hacer otra cosa');
+}
