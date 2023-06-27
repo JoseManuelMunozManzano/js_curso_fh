@@ -52,3 +52,36 @@ if (dia === 0) {
 } else {
   console.log('No es lunes, martes ni domingo...');
 }
+
+// Sin usar if, else o switch, únicamente objetos
+dia = 6; // 0: Domingo, 1: Lunes, ... 6: Sábado
+
+const diasLetras = {
+  0: 'domingo',
+  1: 'lunes',
+  2: 'martes',
+  3: 'miércoles',
+  4: 'jueves',
+  5: 'viernes',
+  6: 'sábado',
+};
+
+// día de la semana
+console.log(diasLetras[dia] || 'Día no válido');
+
+// Esta forma de obtener el día de la semana es muy flexible y es mucho mejor que usar cualquier otra estructura.
+// Incluso podríamos, dado el día de la semana, ejecutar un procedimiento de esta forma:
+const diasSemana = {
+  0: () => 'domingo - 0',
+  1: () => 'lunes - 1',
+  2: () => 'martes - 2',
+  3: () => 'miércoles - 3',
+  4: () => 'jueves - 4',
+  5: () => 'viernes - 5',
+  6: () => 'sábado - 6',
+};
+console.log(diasSemana[dia]());
+
+// También se puede obtener el día de la semana usando arrays, aprovechando que comienzan en la posición 0
+const diasLetrasArray = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+console.log(diasLetrasArray[dia]);
