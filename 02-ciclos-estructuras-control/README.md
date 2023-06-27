@@ -23,6 +23,8 @@ Consta de los siguientes ficheros JavaScript:
 
 ### 01_valor-referencia.js
 
+### 02_if-else.js
+
 Para ejecutar cualquiera de los ficheros:
 
 ```
