@@ -33,6 +33,8 @@ Consta de los siguientes ficheros JavaScript:
 
 ### 06_switch.js
 
+### 07_whle-do-while.js
+
 Para ejecutar cualquiera de los ficheros:
 
 ```
