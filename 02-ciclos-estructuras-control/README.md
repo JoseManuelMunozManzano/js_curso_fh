@@ -27,7 +27,9 @@ Consta de los siguientes ficheros JavaScript:
 
 ### 03_logica-booleana.js
 
-### 04_operador_ternario.js
+### 04_operador-ternario.js
+
+### 05_proptip-ternario.js
 
 Para ejecutar cualquiera de los ficheros:
 
