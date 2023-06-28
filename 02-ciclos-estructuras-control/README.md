@@ -31,6 +31,8 @@ Consta de los siguientes ficheros JavaScript:
 
 ### 05_proptip-ternario.js
 
+### 06_switch.js
+
 Para ejecutar cualquiera de los ficheros:
 
 ```
