@@ -15,6 +15,13 @@ let deck = [];
 const tipos = ['C', 'D', 'H', 'S'];
 const especiales = ['A', 'J', 'Q', 'K'];
 
+let puntosJugador = 0,
+  puntosComputadora = 0;
+
+// Referencias del HTML
+const btnPedir = document.querySelector('#btnPedir');
+const puntosHTML = document.querySelectorAll('small');
+
 // Primero vamos a hacer el juego de una forma sencilla con lo que hemos visto hasta el momento.
 // Va a ser educativo, pero esta lógica va a tener problemas.
 // Luego lo vamos a optimizar.
@@ -36,7 +43,6 @@ const crearDeck = () => {
   }
 
   deck = _.shuffle(deck);
-  console.log(deck);
   return deck;
 };
 
@@ -52,8 +58,6 @@ const pedirCarta = () => {
 
   const carta = deck.pop();
 
-  console.log(deck);
-  console.log(carta);
   return carta;
 };
 
@@ -66,15 +70,13 @@ const valorCarta = (carta) => {
   const valor = carta.substring(0, carta.length - 1);
 
   return isNaN(valor) ? (valor === 'A' ? 11 : 10) : +valor;
-
-  // if (isNaN(valor)) {
-  //   puntos = valor === 'A' ? 11 : 10;
-  // } else {
-  //   puntos = +valor;
-  // }
-
-  // return puntos;
 };
 
-const valor = valorCarta(pedirCarta());
-console.log({ valor });
+/**
+ * Eventos
+ */
+btnPedir.addEventListener('click', () => {
+  const carta = pedirCarta();
+  puntosJugador += valorCarta(carta);
+  puntosHTML[0].innerText = puntosJugador;
+});
