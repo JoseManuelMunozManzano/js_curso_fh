@@ -9,50 +9,56 @@
 // Esto se llama función anónima autoinvocada.
 // Lo que hace es crear un nuevo scope sin referencia por nombre, por lo que NO es posible llamar a este
 // objeto directamente.
-(() => {
+//
+// Damos nombre a la función autoinvocada porque hemos hecho un return al final de la misma y necesitaremos
+// un nombre para poder hacer referencia a lo que se hace return.
+const miModulo = (() => {
   // Este use strict no es estrictamente necesario, pero es bueno añadirlo para decirle a JS que sea estricto
   // a la hora de evaluar el código. Habilita restricciones y ayuda al desarrollo evitando errores comunes.
   // https://www.w3schools.com/js/js_strict.asp
   ('use strict');
 
   let deck = [];
-  const tipos = ['C', 'D', 'H', 'S'];
-  const especiales = ['A', 'J', 'Q', 'K'];
+  const tipos = ['C', 'D', 'H', 'S'],
+    especiales = ['A', 'J', 'Q', 'K'];
 
-  let puntosJugador = 0,
-    puntosComputadora = 0;
+  // Con este arreglo podemos tener más de un jugador humano sin tener que tocar el código luego.
+  // El último jugador será siempre la computadora.
+  // Pero tras la optimización del programa, la verdad es que no está preparado para tener más de un jugador humano.
+  let puntosJugadores = [];
 
   // Referencias del HTML
-  const btnPedir = document.querySelector('#btnPedir');
-  const btnDetener = document.querySelector('#btnDetener');
-  const btnNuevo = document.querySelector('#btnNuevo');
+  const btnPedir = document.querySelector('#btnPedir'),
+    btnDetener = document.querySelector('#btnDetener'),
+    btnNuevo = document.querySelector('#btnNuevo');
 
-  const divCartasJugador = document.querySelector('#jugador-cartas');
-  const divCartasComputadora = document.querySelector('#computadora-cartas');
+  const divCartasJugadores = document.querySelectorAll('.divCartas'),
+    puntosHTML = document.querySelectorAll('small');
 
-  const puntosHTML = document.querySelectorAll('small');
+  /**
+   * PROCESO PRINCIPAL
+   */
+  const inicializarJuego = (numJugadores = 2) => {
+    deck = crearDeck();
 
-  // Primero vamos a hacer el juego de una forma sencilla con lo que hemos visto hasta el momento.
-  // Va a ser educativo, pero esta lógica va a tener problemas.
-  // Luego lo vamos a optimizar.
-  //
-  // PROBLEMAS DE ESTE CODIGO
-  // Como tengo todo el código en el objeto global no está protegido y los usuarios pueden acceder en la consola
-  // del navegador a todas las variables del código.
-  // Por ejemplo, los usuarios pueden llamar directamente, en la consola, a la función turnoComputadora(21)
-  // con la máxima puntuación, asegurándose no perder, haciendo trampas.
-  // Otra trampa es, accediendo a la variable global deck en la consola, saber las cartas que me van a salir, y puedo
-  // descartar las que me vengan mal usando la función deck.pop()
-  //
-  // Se va a proteger nuestro juego y vamos a hacer optimizaciones al código usando el patrón módulo.
-  //
-  // El patrón módulo nos permite una encapsulación del código, es decir, este queda como en un contenedor privado y
-  // nadie de fuera podrá manipular nuestras variables ni llamar funciones desde la consola.
+    puntosJugadores = [];
+    for (let i = 0; i < numJugadores; i++) {
+      puntosJugadores.push(0);
+    }
+
+    puntosHTML.forEach((elem) => (elem.innerText = 0));
+    divCartasJugadores.forEach((elem) => (elem.innerHTML = ''));
+
+    btnPedir.disabled = false;
+    btnDetener.disabled = false;
+  };
 
   /**
    * Crear baraja
    */
   const crearDeck = () => {
+    deck = [];
+
     for (let i = 2; i <= 10; i++) {
       for (let tipo of tipos) {
         deck.push(i + tipo);
@@ -65,11 +71,8 @@
       }
     }
 
-    deck = _.shuffle(deck);
-    return deck;
+    return _.shuffle(deck);
   };
-
-  crearDeck();
 
   /**
    * Pedir carta
@@ -78,45 +81,44 @@
     if (deck.length === 0) {
       throw 'No hay cartas en el deck';
     }
-
-    const carta = deck.pop();
-
-    return carta;
+    return deck.pop();
   };
 
+  /**
+   * Valor de la carta
+   */
   const valorCarta = (carta) => {
-    // En JS los strings pueden trabajarse como arreglos. Para obtener el valor de la carta
-    // cojo la primera posición. PERO ESTO NO VALE PARA EL VALOR 10S.
-    // const valor = carta[0];
-    //
-    // Usamos substring
     const valor = carta.substring(0, carta.length - 1);
-
     return isNaN(valor) ? (valor === 'A' ? 11 : 10) : +valor;
   };
 
   /**
-   * Turno de la computadora
+   * Acumular puntos
+   * Turno: 0 = primer jugador y el último será la computadora.
    */
-  const turnoComputadora = (puntosMinimos) => {
-    do {
-      const carta = pedirCarta();
-      puntosComputadora += valorCarta(carta);
-      puntosHTML[1].innerText = puntosComputadora;
+  const acumularPuntos = (carta, turno) => {
+    puntosJugadores[turno] += valorCarta(carta);
+    puntosHTML[turno].innerText = puntosJugadores[turno];
+    return puntosJugadores[turno];
+  };
 
-      // <img class="carta" src="./assets/cartas/10C.png" alt="Carta" />;
-      const imgCarta = document.createElement('img');
-      imgCarta.classList.add('carta');
-      imgCarta.src = `assets/cartas/${carta}.png`;
-      imgCarta.alt = `Carta ${carta}`;
-      divCartasComputadora.append(imgCarta);
+  /**
+   * Crear la carta en HTML
+   */
+  const crearCarta = (carta, turno) => {
+    const imgCarta = document.createElement('img');
+    imgCarta.classList.add('carta');
+    imgCarta.src = `assets/cartas/${carta}.png`;
+    imgCarta.alt = `Carta ${carta}`;
+    divCartasJugadores[turno].append(imgCarta);
+  };
 
-      // Si el jugador sacó más de 21 entonces con la primera carta
-      // la computadora gana.
-      if (puntosMinimos > 21) {
-        break;
-      }
-    } while (puntosComputadora < puntosMinimos && puntosMinimos <= 21);
+  /**
+   * Indicar con un alert quien gana
+   * Notar que está hecho de forma que realmente solo puedo trabajar con 1 jugador y el computador.
+   */
+  const determinarGanador = () => {
+    const [puntosMinimos, puntosComputadora] = puntosJugadores;
 
     // Este resultado aparece antes que las cartas.
     // Esta solución no es muy buena.
@@ -130,7 +132,21 @@
       } else {
         alert('Computadora Gana');
       }
-    }, 30);
+    }, 100);
+  };
+
+  /**
+   * Turno de la computadora
+   */
+  const turnoComputadora = (puntosMinimos) => {
+    let puntosComputadora = 0;
+    do {
+      const carta = pedirCarta();
+      puntosComputadora = acumularPuntos(carta, puntosJugadores.length - 1);
+      crearCarta(carta, puntosJugadores.length - 1);
+    } while (puntosComputadora < puntosMinimos && puntosMinimos <= 21);
+
+    determinarGanador();
   };
 
   /**
@@ -138,15 +154,8 @@
    */
   btnPedir.addEventListener('click', () => {
     const carta = pedirCarta();
-    puntosJugador += valorCarta(carta);
-    puntosHTML[0].innerText = puntosJugador;
-
-    // <img class="carta" src="./assets/cartas/10C.png" alt="Carta" />;
-    const imgCarta = document.createElement('img');
-    imgCarta.classList.add('carta');
-    imgCarta.src = `assets/cartas/${carta}.png`;
-    imgCarta.alt = `Carta ${carta}`;
-    divCartasJugador.append(imgCarta);
+    const puntosJugador = acumularPuntos(carta, 0);
+    crearCarta(carta, 0);
 
     if (puntosJugador > 21) {
       console.warn('Lo siento mucho, perdiste');
@@ -164,23 +173,17 @@
   btnDetener.addEventListener('click', () => {
     btnPedir.disabled = true;
     btnDetener.disabled = true;
-    turnoComputadora(puntosJugador);
+    turnoComputadora(puntosJugadores[0]);
   });
 
   btnNuevo.addEventListener('click', () => {
-    console.clear();
-    deck = [];
-    deck = crearDeck();
-
-    puntosJugador = 0;
-    puntosHTML[0].innerText = 0;
-    puntosComputadora = 0;
-    puntosHTML[1].innerText = 0;
-
-    divCartasComputadora.innerHTML = '';
-    divCartasJugador.innerHTML = '';
-
-    btnPedir.disabled = false;
-    btnDetener.disabled = false;
+    inicializarJuego();
   });
+
+  // Antes de la finalización de la función anónima autoinvocada se puede incluir este return
+  // para regresar lo que queramos que se pueda utilizar desde fuera de esta función. Esto es lo
+  // único que será público fuera de este módulo.
+  return {
+    nuevoJuego: inicializarJuego,
+  };
 })();
