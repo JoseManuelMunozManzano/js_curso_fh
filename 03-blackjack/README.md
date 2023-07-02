@@ -19,3 +19,8 @@ Para ejecutar:
 ```
 doble click en archivo index.html
 ```
+
+Para hacer el minified de la app para producción ir a la ruta:
+https://www.toptal.com/developers/javascript-minifier
+
+En el proyecto ya se ha minificado (juego-min.js) e index.html hace referencia a el en el script.
