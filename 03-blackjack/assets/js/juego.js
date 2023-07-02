@@ -18,6 +18,10 @@ const especiales = ['A', 'J', 'Q', 'K'];
 // Primero vamos a hacer el juego de una forma sencilla con lo que hemos visto hasta el momento.
 // Va a ser educativo, pero esta lógica va a tener problemas.
 // Luego lo vamos a optimizar.
+
+/**
+ * Crear baraja
+ */
 const crearDeck = () => {
   for (let i = 2; i <= 10; i++) {
     for (let tipo of tipos) {
@@ -31,10 +35,26 @@ const crearDeck = () => {
     }
   }
 
-  console.log(deck);
   deck = _.shuffle(deck);
   console.log(deck);
   return deck;
 };
 
 crearDeck();
+
+/**
+ * Pedir carta
+ */
+const pedirCarta = () => {
+  if (deck.length === 0) {
+    throw 'No hay cartas en el deck';
+  }
+
+  const carta = deck.pop();
+
+  console.log(deck);
+  console.log(carta);
+  return carta;
+};
+
+pedirCarta();
