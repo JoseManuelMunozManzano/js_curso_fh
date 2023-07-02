@@ -20,6 +20,8 @@ let puntosJugador = 0,
 
 // Referencias del HTML
 const btnPedir = document.querySelector('#btnPedir');
+
+const divCartasJugador = document.querySelector('#jugador-cartas');
 const puntosHTML = document.querySelectorAll('small');
 
 // Primero vamos a hacer el juego de una forma sencilla con lo que hemos visto hasta el momento.
@@ -79,4 +81,19 @@ btnPedir.addEventListener('click', () => {
   const carta = pedirCarta();
   puntosJugador += valorCarta(carta);
   puntosHTML[0].innerText = puntosJugador;
+
+  // <img class="carta" src="./assets/cartas/10C.png" alt="Carta" />;
+  const imgCarta = document.createElement('img');
+  imgCarta.classList.add('carta');
+  imgCarta.src = `assets/cartas/${carta}.png`;
+  imgCarta.alt = `Carta ${carta}`;
+  divCartasJugador.append(imgCarta);
+
+  if (puntosJugador > 21) {
+    console.warn('Lo siento mucho, perdiste');
+    btnPedir.disabled = true;
+  } else if (puntosJugador === 21) {
+    console.warn('21, genial!');
+    btnPedir.disabled = true;
+  }
 });
