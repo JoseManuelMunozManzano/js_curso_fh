@@ -1,32 +1,15 @@
-// El patrón módulo nos permite una encapsulación del código, es decir, este queda como en un contenedor privado y
-// nadie de fuera podrá manipular nuestras variables ni llamar funciones desde la consola.
-//
-// Sintaxis del patrón módulo: Se usa la palabra reservada function o una función de flecha.
-// Al final lo que queremos es crear una función anónima.
-// Se envuelve esa función entre paréntesis y después de ese último paréntesis, para llamar a la función,
-// se escriben otros dos paréntesis.
-//
-// Esto se llama función anónima autoinvocada.
-// Lo que hace es crear un nuevo scope sin referencia por nombre, por lo que NO es posible llamar a este
-// objeto directamente.
-(() => {
-  // Este use strict no es estrictamente necesario, pero es bueno añadirlo para decirle a JS que sea estricto
-  // a la hora de evaluar el código. Habilita restricciones y ayuda al desarrollo evitando errores comunes.
-  // https://www.w3schools.com/js/js_strict.asp
-  //
-  // Por ejemplo, si abajo, en vez de indicar const personajes, le quito el const, es decir, solo dejo
-  // personajes, con use strict en la consola me va a aparecer un error indicando que personajes no está
-  // definido.
-  // personajes = ['Ana', 'Mercy', 'Mei'];
-  //
-  // Sin use strict ese código funcionaría.
-  ('use strict');
+/**
+ * 2C = Two of Clubs (Tréboles)
+ * 2D = Two of Diamonds (Diamantes)
+ * 2H = Two of Hearts (Corazones)
+ * 2S = Two of Spades (Picas o Espadas)
+ */
 
-  // Si en la consola escribimos la variable personajes veremos que indica que NO está definida,
-  // es decir, el código es seguro.
-  const personajes = ['Ana', 'Mercy', 'Mei'];
-  console.log(personajes);
-})();
+// Nota: Para utilizar funciones que JS no tiene se hace uso de la librería underscore.js
+// https://underscorejs.org/
+// Nos descargamos la versión UMD (Production) con botón derecho y Guardar enlace como...
+// Y utilizamos _.shuffle
+// https://underscorejs.org/#shuffle
 
 let deck = [];
 const tipos = ['C', 'D', 'H', 'S'];
