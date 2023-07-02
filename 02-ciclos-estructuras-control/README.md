@@ -33,7 +33,9 @@ Consta de los siguientes ficheros JavaScript:
 
 ### 06_switch.js
 
-### 07_whle-do-while.js
+### 07_while-do-while.js
+
+### 08_for.js
 
 Para ejecutar cualquiera de los ficheros:
 

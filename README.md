@@ -45,3 +45,16 @@ Vamos a ver:
 - For
   - For in
   - For of
+
+### 03-blackjack
+
+Hacemos el juego de BlackJack, que consiste en intentar sumar 21, jugando contra el ordenador.
+
+Vamos a ver:
+
+- Trabajar con arreglos
+- Mezclar los valores de los arreglos
+- Introducción a la manipulación del DOM
+- Eventos
+- Crear imágenes en la página
+- Realizar la lógica para implementar un competidor de cartas.
