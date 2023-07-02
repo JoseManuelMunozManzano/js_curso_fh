@@ -57,4 +57,7 @@ Vamos a ver:
 - Introducción a la manipulación del DOM
 - Eventos
 - Crear imágenes en la página
-- Realizar la lógica para implementar un competidor de cartas.
+- Realizar la lógica para implementar un competidor de cartas
+- Patrón módulo
+- Minimizar el código de forma manual (luego lo haremos de forma automática)
+- Optimizaciones y protección de código
