@@ -20,8 +20,11 @@ let puntosJugador = 0,
 
 // Referencias del HTML
 const btnPedir = document.querySelector('#btnPedir');
+const btnDetener = document.querySelector('#btnDetener');
 
 const divCartasJugador = document.querySelector('#jugador-cartas');
+const divCartasComputadora = document.querySelector('#computadora-cartas');
+
 const puntosHTML = document.querySelectorAll('small');
 
 // Primero vamos a hacer el juego de una forma sencilla con lo que hemos visto hasta el momento.
@@ -75,6 +78,30 @@ const valorCarta = (carta) => {
 };
 
 /**
+ * Turno de la computadora
+ */
+const turnoComputadora = (puntosMinimos) => {
+  do {
+    const carta = pedirCarta();
+    puntosComputadora += valorCarta(carta);
+    puntosHTML[1].innerText = puntosComputadora;
+
+    // <img class="carta" src="./assets/cartas/10C.png" alt="Carta" />;
+    const imgCarta = document.createElement('img');
+    imgCarta.classList.add('carta');
+    imgCarta.src = `assets/cartas/${carta}.png`;
+    imgCarta.alt = `Carta ${carta}`;
+    divCartasComputadora.append(imgCarta);
+
+    // Si el jugador sacó más de 21 entonces con la primera carta
+    // la computadora gana.
+    if (puntosMinimos > 21) {
+      break;
+    }
+  } while (puntosComputadora < puntosMinimos && puntosMinimos <= 21);
+};
+
+/**
  * Eventos
  */
 btnPedir.addEventListener('click', () => {
@@ -92,8 +119,19 @@ btnPedir.addEventListener('click', () => {
   if (puntosJugador > 21) {
     console.warn('Lo siento mucho, perdiste');
     btnPedir.disabled = true;
+    btnDetener.disabled = true;
+    turnoComputadora(puntosJugador);
   } else if (puntosJugador === 21) {
     console.warn('21, genial!');
     btnPedir.disabled = true;
+    btnDetener.disabled = true;
+    turnoComputadora(puntosJugador);
   }
+});
+
+btnDetener.addEventListener('click', () => {
+  btnPedir.disabled = true;
+  btnDetener.disabled = true;
+
+  turnoComputadora(puntosJugador);
 });
