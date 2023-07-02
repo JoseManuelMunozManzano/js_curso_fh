@@ -31,6 +31,16 @@ const puntosHTML = document.querySelectorAll('small');
 // Primero vamos a hacer el juego de una forma sencilla con lo que hemos visto hasta el momento.
 // Va a ser educativo, pero esta lógica va a tener problemas.
 // Luego lo vamos a optimizar.
+//
+// PROBLEMAS DE ESTE CODIGO
+// Como tengo todo el código en el objeto global no está protegido y los usuarios pueden acceder en la consola
+// del navegador a todas las variables del código.
+// Por ejemplo, los usuarios pueden llamar directamente, en la consola, a la función turnoComputadora(21)
+// con la máxima puntuación, asegurándose no perder, haciendo trampas.
+// Otra trampa es, accediendo a la variable global deck en la consola, saber las cartas que me van a salir, y puedo
+// descartar las que me vengan mal usando la función deck.pop()
+//
+// Se va a proteger nuestro juego y vamos a hacer optimizaciones al código usando el patrón módulo.
 
 /**
  * Crear baraja
