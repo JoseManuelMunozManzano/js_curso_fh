@@ -57,4 +57,24 @@ const pedirCarta = () => {
   return carta;
 };
 
-pedirCarta();
+const valorCarta = (carta) => {
+  // En JS los strings pueden trabajarse como arreglos. Para obtener el valor de la carta
+  // cojo la primera posición. PERO ESTO NO VALE PARA EL VALOR 10S.
+  // const valor = carta[0];
+  //
+  // Usamos substring
+  const valor = carta.substring(0, carta.length - 1);
+
+  return isNaN(valor) ? (valor === 'A' ? 11 : 10) : +valor;
+
+  // if (isNaN(valor)) {
+  //   puntos = valor === 'A' ? 11 : 10;
+  // } else {
+  //   puntos = +valor;
+  // }
+
+  // return puntos;
+};
+
+const valor = valorCarta(pedirCarta());
+console.log({ valor });
