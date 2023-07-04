@@ -25,6 +25,16 @@ class Persona {
     this.codigo = codigo;
     this.frase = frase;
   }
+
+  // Métodos
+  quienSoy() {
+    console.log(`Soy ${this.nombre} y mi identidad es ${this.codigo}`);
+  }
+
+  miFrase() {
+    this.quienSoy();
+    console.log(`${this.codigo} dice ${this.frase}`);
+  }
 }
 
 // Crear nueva instancia de la clase.
@@ -36,3 +46,7 @@ console.log(spiderman);
 // Nueva instancia.
 const jm = new Persona('José Manuel', 'JM', 'Siempre estudiando!');
 console.log(jm);
+
+// Ejecución de un método
+jm.quienSoy();
+jm.miFrase();
