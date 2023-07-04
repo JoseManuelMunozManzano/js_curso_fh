@@ -14,7 +14,7 @@ Vamos a ver como se usan las clases en JavaScript.
 
 Consta de los siguientes ficheros JavaScript:
 
-### 01_classes.js
+### 01_problema.js
 
 Para ejecutar:
 
