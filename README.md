@@ -61,3 +61,17 @@ Vamos a ver:
 - Patrón módulo
 - Minimizar el código de forma manual (luego lo haremos de forma automática)
 - Optimizaciones y protección de código
+
+### 04-classes
+
+Vamos a ver como se usan las clases en JavaScript.
+
+- Problematica de prototipos
+- Clases
+- Sets
+- Gets
+- Métodos estáticos
+- Gets estáticos
+- ESNext: Propiedades privadas (aún no soportado completamente)
+- Singletons
+- Multiples constructores
