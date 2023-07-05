@@ -16,6 +16,16 @@ Consta de los siguientes ficheros JavaScript:
 
 ### 01_problema.js
 
+### 02_class.js
+
+### 03_class_2.js
+
+### 04_class_3.js
+
+### 05_subclasses.js
+
+### 06_private.js
+
 Para ejecutar:
 
 ```
