@@ -28,6 +28,8 @@ Consta de los siguientes ficheros JavaScript:
 
 ### 07_singleton.js
 
+### 08_constructores-multiples.js
+
 Para ejecutar:
 
 ```
