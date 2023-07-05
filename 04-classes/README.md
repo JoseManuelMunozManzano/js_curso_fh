@@ -26,6 +26,8 @@ Consta de los siguientes ficheros JavaScript:
 
 ### 06_private.js
 
+### 07_singleton.js
+
 Para ejecutar:
 
 ```
