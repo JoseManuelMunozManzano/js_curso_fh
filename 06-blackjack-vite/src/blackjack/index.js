@@ -1,7 +1,7 @@
 // Clean Code: hemos separarado el código en pequeños archivos con responsabilidades únicas.
 import _ from 'underscore';
 // Importando del fichero de barril.
-import { crearDeck, pedirCarta, valorCarta, turnoComputadora } from './usecases';
+import { crearDeck, pedirCarta, valorCarta, turnoComputadora, crearCartaHTML } from './usecases';
 
 // Ejemplo de importación independiente con alias
 // import { crearDeck as crearNuevoDeck } from './usecases/crear-deck';
@@ -44,10 +44,7 @@ btnPedir.addEventListener('click', () => {
   puntosJugador = puntosJugador + valorCarta(carta);
   puntosHTML[0].innerText = puntosJugador;
 
-  // <img class="carta" src="assets/cartas/2C.png">
-  const imgCarta = document.createElement('img');
-  imgCarta.src = `assets/cartas/${carta}.png`; //3H, JD
-  imgCarta.classList.add('carta');
+  const imgCarta = crearCartaHTML(carta);
   divCartasJugador.append(imgCarta);
 
   if (puntosJugador > 21) {

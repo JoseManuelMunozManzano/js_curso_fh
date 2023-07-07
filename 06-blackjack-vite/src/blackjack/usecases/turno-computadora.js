@@ -1,5 +1,5 @@
 // Aquí estamos utilizando realmente el archivo de barril
-import { pedirCarta, valorCarta } from './';
+import { crearCartaHTML, pedirCarta, valorCarta } from './';
 
 // Nota: puntosHTML NO debería estar aquí porque nuestra función ya está haciendo dos cosas.
 //    Igual con divCartasComputadora, haría una tercera cosa.
@@ -24,10 +24,7 @@ export const turnoComputadora = (puntosMinimos, puntosHTML, divCartasComputadora
     puntosComputadora = puntosComputadora + valorCarta(carta);
     puntosHTML.innerText = puntosComputadora;
 
-    // <img class="carta" src="assets/cartas/2C.png">
-    const imgCarta = document.createElement('img');
-    imgCarta.src = `assets/cartas/${carta}.png`; //3H, JD
-    imgCarta.classList.add('carta');
+    const imgCarta = crearCartaHTML(carta);
     divCartasComputadora.append(imgCarta);
 
     if (puntosMinimos > 21) {
@@ -35,6 +32,7 @@ export const turnoComputadora = (puntosMinimos, puntosHTML, divCartasComputadora
     }
   } while (puntosComputadora < puntosMinimos && puntosMinimos <= 21);
 
+  // Esto debería ser otra función, ya que su labor es una completamente independiente.
   setTimeout(() => {
     if (puntosComputadora === puntosMinimos) {
       alert('Nadie gana :(');

@@ -3,6 +3,7 @@
 //
 // Ahora, donde importemos alguna de estas funciones, haremos referencia solo a ./usecases, porque por defecto ya tiene
 // en cuenta el fichero index.js, y solo importaremos de un sitio.
+export { crearCartaHTML } from './crear-carta-html';
 export { crearDeck } from './crear-deck';
 export { pedirCarta } from './pedir-carta';
 export { turnoComputadora } from './turno-computadora';
