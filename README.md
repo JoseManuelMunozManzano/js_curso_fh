@@ -107,7 +107,7 @@ npm run build
 
 ### 06-blackjack-vite
 
-Es la misma aplicación que hicimos de blackjack pero ahora se va a hacer usando Vite.
+Es la misma aplicación que hicimos de blackjack pero ahora se va a hacer usando Vite y con una fuerte refactorización.
 
 Para crear este proyecto hemos hecho lo siguiente:
 
