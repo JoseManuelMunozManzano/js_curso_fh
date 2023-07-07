@@ -1,6 +1,8 @@
 // Clean Code: hemos separarado el código en pequeños archivos con responsabilidades únicas.
 import _ from 'underscore';
 import { crearDeck } from './usecases/crear-deck';
+import { pedirCarta } from './usecases/pedir-carta';
+import { valorCarta } from './usecases/valor-carta';
 
 // Ejemplo de importación independiente con alias
 // import { crearDeck as crearNuevoDeck } from './usecases/crear-deck';
@@ -36,25 +38,10 @@ const puntosHTML = document.querySelectorAll('small');
 // Habiendo documentado crearDeck, si ahora ponemos el cursor sobre la función, veremos los tipos de datos.
 deck = crearDeck(tipos, especiales);
 
-// Esta función me permite tomar una carta
-const pedirCarta = () => {
-  if (deck.length === 0) {
-    throw 'No hay cartas en el deck';
-  }
-  const carta = deck.pop();
-  return carta;
-};
-
-// pedirCarta();
-const valorCarta = (carta) => {
-  const valor = carta.substring(0, carta.length - 1);
-  return isNaN(valor) ? (valor === 'A' ? 11 : 10) : valor * 1;
-};
-
 // turno de la computadora
 const turnoComputadora = (puntosMinimos) => {
   do {
-    const carta = pedirCarta();
+    const carta = pedirCarta(deck);
 
     puntosComputadora = puntosComputadora + valorCarta(carta);
     puntosHTML[1].innerText = puntosComputadora;
@@ -85,7 +72,7 @@ const turnoComputadora = (puntosMinimos) => {
 
 // Eventos
 btnPedir.addEventListener('click', () => {
-  const carta = pedirCarta();
+  const carta = pedirCarta(deck);
 
   puntosJugador = puntosJugador + valorCarta(carta);
   puntosHTML[0].innerText = puntosJugador;
@@ -119,7 +106,7 @@ btnDetener.addEventListener('click', () => {
 btnNuevo.addEventListener('click', () => {
   console.clear();
   deck = [];
-  deck = crearDeck();
+  deck = crearDeck(tipos, especiales);
 
   puntosJugador = 0;
   puntosComputadora = 0;
