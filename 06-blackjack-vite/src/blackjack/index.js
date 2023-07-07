@@ -1,8 +1,7 @@
 // Clean Code: hemos separarado el código en pequeños archivos con responsabilidades únicas.
 import _ from 'underscore';
-import { crearDeck } from './usecases/crear-deck';
-import { pedirCarta } from './usecases/pedir-carta';
-import { valorCarta } from './usecases/valor-carta';
+// Importando del fichero de barril.
+import { crearDeck, pedirCarta, valorCarta } from './usecases';
 
 // Ejemplo de importación independiente con alias
 // import { crearDeck as crearNuevoDeck } from './usecases/crear-deck';
