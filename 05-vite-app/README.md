@@ -2,8 +2,6 @@
 
 Vamos a realizar un proyecto JavaScript usando Vite.
 
-Es el mismo proyecto de BlackJack.
-
 Vite es parecido a Webpack y nos ayuda a trabajar en nuestra aplicación con diferentes herramientas para automatizar procesos.
 
 Para crear este proyecto hemos hecho lo siguiente:
