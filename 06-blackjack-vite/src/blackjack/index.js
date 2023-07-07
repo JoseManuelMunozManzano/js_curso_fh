@@ -33,6 +33,7 @@ const divCartasComputadora = document.querySelector('#computadora-cartas');
 
 const puntosHTML = document.querySelectorAll('small');
 
+// Habiendo documentado crearDeck, si ahora ponemos el cursor sobre la función, veremos los tipos de datos.
 deck = crearDeck(tipos, especiales);
 
 // Esta función me permite tomar una carta
