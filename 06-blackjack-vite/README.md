@@ -18,3 +18,11 @@ Entramos al proyecto recien renombrado y ejecutamos para empezar a andar el proy
 npm install
 npm run dev
 ```
+
+Para hacer el build de la aplicación para realizar el despliegue, ejecutar:
+
+```
+npm run build
+```
+
+Despliegue en https://www.netlify.com/
