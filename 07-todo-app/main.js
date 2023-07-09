@@ -1,3 +1,5 @@
 import './style.css';
+import { App } from './src/todos/app';
 
-console.log('Hola Mundo');
+// Donde vamos a renderizar la app.
+App('#app');
