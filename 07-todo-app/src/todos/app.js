@@ -9,6 +9,7 @@ import { renderTodos } from './use-cases';
 // Si el día de mañana esto cambia, solo hay que tocar aquí.
 const ElementIDs = {
   TodoList: '.todo-list',
+  NewTodoInput: '#new-todo-input',
 };
 
 // Se va a hacer algo parecido a lo que hace React para trabajar.
@@ -36,4 +37,20 @@ export const App = (elementId) => {
     document.querySelector(elementId).append(app);
     displayTodos();
   })();
+
+  // Referencias HTML
+  // Tenemos que crearlo aquí, debajo del IIFE, porque el IIFE es síncrono y ahí se crea el elemento en el HTML.
+  // Si lo hiciera arriba del IIFE, las referencias NO estarían creadas en el DOM.
+  const newDescriptionInput = document.querySelector(ElementIDs.NewTodoInput);
+
+  // Listeners
+  newDescriptionInput.addEventListener('keyup', (ev) => {
+    // Si no es Return o no hay nada escrito salimos
+    if (ev.keyCode !== 13) return;
+    if (ev.target.value.trim().length === 0) return;
+
+    todoStore.addTodo(ev.target.value);
+    displayTodos();
+    ev.target.value = '';
+  });
 };
