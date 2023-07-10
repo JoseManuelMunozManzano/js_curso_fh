@@ -10,6 +10,7 @@ import { renderTodos } from './use-cases';
 const ElementIDs = {
   TodoList: '.todo-list',
   NewTodoInput: '#new-todo-input',
+  DestroyButton: 'destroy',
 };
 
 // Se va a hacer algo parecido a lo que hace React para trabajar.
@@ -61,6 +62,15 @@ export const App = (elementId) => {
     // Así obtenemos el id.
     const element = ev.target.closest('[data-id]');
     todoStore.toggleTodo(element.getAttribute('data-id'));
+    displayTodos();
+  });
+
+  todoListUL.addEventListener('click', (ev) => {
+    const isDestroyElement = ev.target.className === ElementIDs.DestroyButton;
+    const element = ev.target.closest('[data-id]');
+    if (!element || !isDestroyElement) return;
+
+    todoStore.deleteTodo(element.getAttribute('data-id'));
     displayTodos();
   });
 };
