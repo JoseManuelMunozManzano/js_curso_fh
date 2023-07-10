@@ -42,6 +42,7 @@ export const App = (elementId) => {
   // Tenemos que crearlo aquí, debajo del IIFE, porque el IIFE es síncrono y ahí se crea el elemento en el HTML.
   // Si lo hiciera arriba del IIFE, las referencias NO estarían creadas en el DOM.
   const newDescriptionInput = document.querySelector(ElementIDs.NewTodoInput);
+  const todoListUL = document.querySelector(ElementIDs.TodoList);
 
   // Listeners
   newDescriptionInput.addEventListener('keyup', (ev) => {
@@ -53,4 +54,15 @@ export const App = (elementId) => {
     displayTodos();
     ev.target.value = '';
   });
+
+  todoListUL.addEventListener('click', (ev) => {
+    // Como podemos hacer click tanto en el check como en el botón destroy, indicamos
+    // que realmente queremos el elemento HTML más cercano, siempre hacia el padre, que tenga ese data attribute.
+    // Así obtenemos el id.
+    const element = ev.target.closest('[data-id]');
+    todoStore.toggleTodo(element.getAttribute('data-id'));
+    displayTodos();
+  });
 };
+
+// REPETIR QUE LA IDEA DE TODO ESTE MONTAJE ES QUE LA CAPA DE NEGOCIO ESTE DESPEGADA DE NUESTRA APLICACIÓN
