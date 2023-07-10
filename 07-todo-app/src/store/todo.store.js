@@ -3,6 +3,9 @@
 // Se pueden usar librerías para esto, como Redux o Pinia, pero para aprender más JavaScript,
 // lo vamos a hacer todo en Vanilla JS.
 //
+// Otra cosa importante del store es que no está amarrado a nuestro HTML. Si el día de mañana
+// quisiéramos usar React podríamos usar este mismo store tal y como está sin ningún problema.
+//
 // Otra idea sería usar la biblioteca RxJS y tratar estos objetos como objetos reactivos, es decir,
 // sabríamos cuando cambian.
 
@@ -26,6 +29,55 @@ const initStore = () => {
   console.log('InitStore 🥑');
 };
 
+const loadStore = () => {
+  throw new Error('Not implemented');
+};
+
+// Hay dos opciones, o bien recibimos el todo ya completo y solo insertamos o recibimos la descripción
+// y montamos el todo. Vamos a coger la última opción.
+/**
+ *
+ * @param {String} description
+ */
+const addTodo = (description) => {
+  throw new Error('Not implemented');
+};
+
+/**
+ * Para ir cambiando el todo.done de true a false y viceversa.
+ * @param {String} todoId Es el ID del todo
+ */
+const toggleTodo = (todoId) => {
+  throw new Error('Not implemented');
+};
+
+const deleteTodo = (todoId) => {
+  throw new Error('Not implemented');
+};
+
+const deleteCompleted = () => {
+  throw new Error('Not implemented');
+};
+
+const setFilter = (newFilter = Filters.All) => {
+  throw new Error('Not implemented');
+};
+
+// Saber el filtro seleccionado
+// No queremos exponer al mundo exterior el state porque todos los objetos pasan por referencia y
+// cualquier persona podría modificarlo. Cualquier acceso a nuestro state del store tiene que pasar
+// por alguna de las funciones controladas por mi.
+const getCurrentFilter = () => {
+  throw new Error('Not implemented');
+};
+
 export default {
+  addTodo,
+  deleteCompleted,
+  deleteTodo,
+  getCurrentFilter,
   initStore,
+  loadStore,
+  setFilter,
+  toggleTodo,
 };
