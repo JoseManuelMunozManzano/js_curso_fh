@@ -44,7 +44,7 @@ const getTodos = (filter = Filters.All) => {
     case Filters.All:
       // Para no regresar una referencia al objeto puedo utilizar el spread operator.
       // Con este devuelve un objeto nuevo que tiene todos los valores de state.todos.
-      return { ...state.todos };
+      return [...state.todos];
     case Filters.Completed:
       return state.todos.filter((todo) => todo.done);
     case Filters.Pending:
