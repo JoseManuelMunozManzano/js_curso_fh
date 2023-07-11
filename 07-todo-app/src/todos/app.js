@@ -3,7 +3,7 @@
 import html from './app.html?raw';
 
 import todoStore, { Filters } from '../store/todo.store';
-import { renderTodos } from './use-cases';
+import { renderTodos, renderPending } from './use-cases';
 
 // Esto se hace con el único objetivo de evitar colocar strings como identificadores.
 // Si el día de mañana esto cambia, solo hay que tocar aquí.
@@ -13,6 +13,7 @@ const ElementIDs = {
   NewTodoInput: '#new-todo-input',
   TodoList: '.todo-list',
   TodoFilters: '.filtro',
+  PendingCountLabel: '#pending-count',
 };
 
 // Se va a hacer algo parecido a lo que hace React para trabajar.
@@ -28,6 +29,11 @@ export const App = (elementId) => {
     // funciones independientes que solo hagan una cosa.
     const todos = todoStore.getTodos(todoStore.getCurrentFilter());
     renderTodos(ElementIDs.TodoList, todos);
+    updatePendingCount();
+  };
+
+  const updatePendingCount = () => {
+    renderPending(ElementIDs.PendingCountLabel);
   };
 
   // Función anónima autoinvocada IIFE
