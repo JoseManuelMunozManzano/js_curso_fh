@@ -37,7 +37,13 @@ const initStore = () => {
 
 const loadStore = () => {
   // La localStorage es visible para la gente, cuidado con lo que se graba.
+  // Tiene de capacidad como 50 MB, pero depende del navegador y del dispositivo, si es móvil son unos 10 MB.
   // La lectura/escritura en localStorage puede considerarse síncrono.
+  //
+  // En el espacio de las cookies podemos grabar como 1 MB de información. La información de las cookies viaja
+  // hacia las peticiones http de los servidores cuando se hace una petición.
+  // Ayuda a dar información personalizada a nuestros usuarios. Por ejemplo, en una tienda virtual si un
+  // usuario busca camisas, cuando vuelva a entrar el usuario le aparecerán camisas.
 
   // Preguntamos si tenemos algo en localStorage para la key 'state'.
   if (!localStorage.getItem('state')) return;
@@ -102,7 +108,7 @@ const deleteTodo = (todoId) => {
 };
 
 const deleteCompleted = () => {
-  state.todos = state.todos.filter((todo) => todo.done);
+  state.todos = state.todos.filter((todo) => !todo.done);
   saveStateToLocalStorage();
 };
 

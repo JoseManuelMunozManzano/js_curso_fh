@@ -8,9 +8,10 @@ import { renderTodos } from './use-cases';
 // Esto se hace con el único objetivo de evitar colocar strings como identificadores.
 // Si el día de mañana esto cambia, solo hay que tocar aquí.
 const ElementIDs = {
-  TodoList: '.todo-list',
-  NewTodoInput: '#new-todo-input',
+  ClearCompletedButton: '.clear-completed',
   DestroyButton: 'destroy',
+  NewTodoInput: '#new-todo-input',
+  TodoList: '.todo-list',
 };
 
 // Se va a hacer algo parecido a lo que hace React para trabajar.
@@ -44,6 +45,7 @@ export const App = (elementId) => {
   // Si lo hiciera arriba del IIFE, las referencias NO estarían creadas en el DOM.
   const newDescriptionInput = document.querySelector(ElementIDs.NewTodoInput);
   const todoListUL = document.querySelector(ElementIDs.TodoList);
+  const clearCompletedButton = document.querySelector(ElementIDs.ClearCompletedButton);
 
   // Listeners
   newDescriptionInput.addEventListener('keyup', (ev) => {
@@ -71,6 +73,11 @@ export const App = (elementId) => {
     if (!element || !isDestroyElement) return;
 
     todoStore.deleteTodo(element.getAttribute('data-id'));
+    displayTodos();
+  });
+
+  clearCompletedButton.addEventListener('click', () => {
+    todoStore.deleteCompleted();
     displayTodos();
   });
 };
