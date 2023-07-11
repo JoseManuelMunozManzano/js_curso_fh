@@ -12,8 +12,8 @@
 import { Todo } from '../todos/models/todo.model';
 
 // Enumeración con los tipos de filtro, para tenerlas centralizadas.
-const Filters = {
-  All: 'all',
+export const Filters = {
+  All: 'All',
   Completed: 'Completed',
   Pending: 'Pending',
 };

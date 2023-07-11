@@ -2,7 +2,7 @@
 // Sin el esto no funciona.
 import html from './app.html?raw';
 
-import todoStore from '../store/todo.store';
+import todoStore, { Filters } from '../store/todo.store';
 import { renderTodos } from './use-cases';
 
 // Esto se hace con el único objetivo de evitar colocar strings como identificadores.
@@ -12,6 +12,7 @@ const ElementIDs = {
   DestroyButton: 'destroy',
   NewTodoInput: '#new-todo-input',
   TodoList: '.todo-list',
+  TodoFilters: '.filtro',
 };
 
 // Se va a hacer algo parecido a lo que hace React para trabajar.
@@ -46,6 +47,7 @@ export const App = (elementId) => {
   const newDescriptionInput = document.querySelector(ElementIDs.NewTodoInput);
   const todoListUL = document.querySelector(ElementIDs.TodoList);
   const clearCompletedButton = document.querySelector(ElementIDs.ClearCompletedButton);
+  const filtersLIs = document.querySelectorAll(ElementIDs.TodoFilters);
 
   // Listeners
   newDescriptionInput.addEventListener('keyup', (ev) => {
@@ -79,6 +81,29 @@ export const App = (elementId) => {
   clearCompletedButton.addEventListener('click', () => {
     todoStore.deleteCompleted();
     displayTodos();
+  });
+
+  filtersLIs.forEach((element) => {
+    element.addEventListener('click', (element) => {
+      filtersLIs.forEach((el) => el.classList.remove('selected'));
+      element.target.classList.add('selected');
+
+      // Ojo con el hardcode, deberíamos, en app.html crear unos ids y trabajar con ellos.
+      // Así si cambia el idioma no perdemos esta funcionalidad.
+      switch (element.target.text) {
+        case 'Todos':
+          todoStore.setFilter(Filters.All);
+          break;
+        case 'Pendientes':
+          todoStore.setFilter(Filters.Pending);
+          break;
+        case 'Completados':
+          todoStore.setFilter(Filters.Completed);
+          break;
+      }
+
+      displayTodos();
+    });
   });
 };
 
