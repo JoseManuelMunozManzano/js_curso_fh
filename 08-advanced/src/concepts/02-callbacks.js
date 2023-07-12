@@ -5,10 +5,11 @@ import { heroes } from '../data/heroes';
  * @param {HTMLDivElement} element
  */
 export const callbacksComponent = (element) => {
-  const id = '5d86371fd55e2e2a30fe1ccb1';
+  const id1 = '5d86371fd55e2e2a30fe1ccb1';
+  const id2 = '5d86371fd55e2e2a30fe1ccb2';
 
   // Un callback es una función a que recibe como argumento otra función b que invocamos dentro de la función a
-  findHero(id, (error, hero) => {
+  findHero(id1, (error, hero1) => {
     // ¿Qué pasa si el heroe no existe? Tenemos varias posibilidades:
     //  1. Indicar con el asterisco hero?, que heroe es opcional y si no viene informará undefined.
     //        element.innerHTML = hero?.name;
@@ -20,12 +21,21 @@ export const callbacksComponent = (element) => {
     //     Durante muchos años esta ha sido la única manera de trabajar con código semi-asíncrono.
     //     Para poder trabajar de esta forma, la firma de findHero ha cambiado y tenemos que tratar el error.
 
-    if (!hero) {
+    if (!hero1) {
       element.innerHTML = error;
       return;
     }
 
-    element.innerHTML = hero.name;
+    // El término callback hell se refiere a cuando tenemos muchos callbacks que internamente llaman a otros callbacks y
+    // que internamente llaman a otros callbacks...
+    // Hay varias técnicas para evitar esto.
+    findHero(id2, (error, hero2) => {
+      if (!hero2) {
+        element.innerHTML = error;
+        return;
+      }
+      element.innerHTML = `${hero1.name} / ${hero2.name}`;
+    });
   });
 };
 
