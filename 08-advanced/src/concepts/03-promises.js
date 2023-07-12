@@ -13,6 +13,14 @@ export const promiseComponent = (element) => {
     element.innerHTML = hero.name;
   };
 
+  // Para la explicación del Promise Hell
+  const renderTwoHeroes = (hero1, hero2) => {
+    element.innerHTML = `
+      <h3>${hero1.name}</h3>
+      <h3>${hero2.name}</h3>
+    `;
+  };
+
   const renderError = (error) => {
     element.innerHTML = `
       <h1>Error:</h1>
@@ -30,8 +38,23 @@ export const promiseComponent = (element) => {
   //      los argumentos y sin indicarlos en la llamada, de esta forma:
   //   findHero(id1).then(renderHero);
   const id1 = '5d86371f25a058e5b1c8a65e';
+  const id2 = '5d86371f233c9f2425f16916';
+
   findHero(id1)
     .then((superHero) => renderHero(superHero))
+    .catch(renderError);
+
+  // Promise Hell
+  // Si una de las promesas sale mal salimos al catch, aunque todas las demás sean correctas.
+  // Quizás es más fácil de leer, pero es LO MISMO que los callback hell.
+  findHero(id1)
+    .then((hero1) => {
+      findHero(id2)
+        .then((hero2) => {
+          renderTwoHeroes(hero1, hero2);
+        })
+        .catch(renderError);
+    })
     .catch(renderError);
 };
 
