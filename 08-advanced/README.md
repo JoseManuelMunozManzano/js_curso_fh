@@ -12,6 +12,7 @@ Nuevo proyecto de Vite donde vamos a aprender lo relacionado a Callbacks, promes
 Fuentes creados en /src/concepts
 
 - 01-environments.js: Habla de variales de entorno
+- 02-callbacks.js
 
 NOTA: Proyecto creado con el comando `npm create vite@latest` con nombre advanced en Vanilla JavaScript.
 
