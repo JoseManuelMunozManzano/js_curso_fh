@@ -13,6 +13,7 @@ Fuentes creados en /src/concepts
 
 - 01-environments.js: Habla de variales de entorno
 - 02-callbacks.js
+- 03-promises.js
 
 NOTA: Proyecto creado con el comando `npm create vite@latest` con nombre advanced en Vanilla JavaScript.
 
