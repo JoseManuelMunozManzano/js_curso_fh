@@ -149,3 +149,15 @@ Nuevo proyecto de Vite. Es una Todo App y vamos a aprender:
 - Documentación de funciones
 
 NOTA: Proyecto creado con el comando `npm create vite@latest` con nombre todo-app en Vanilla JavaScript.
+
+### 08-advanced
+
+Nuevo proyecto de Vite donde vamos a aprender lo relacionado a Callbacks, promesas y generadores.
+
+- Variables de entorno
+- Callbacks y callback hell
+- Promises y promise hell
+- Async, async - await
+- Evitar los callback o promise hells
+- Funciones generadoras
+- Funciones generadoras asíncronas
