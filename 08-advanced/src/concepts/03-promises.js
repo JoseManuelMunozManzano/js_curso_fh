@@ -9,7 +9,30 @@ import { heroes } from '../data/heroes';
  * @param {HTMLDivElement} element
  */
 export const promiseComponent = (element) => {
-  console.log('promiseComponent');
+  const renderHero = (hero) => {
+    element.innerHTML = hero.name;
+  };
+
+  const renderError = (error) => {
+    element.innerHTML = `
+      <h1>Error:</h1>
+      <h3>${error}</h3>
+    `;
+  };
+
+  // Uso de la promesa:
+  //    - then(): Lo ejecutamos cuando todo sale bien.
+  //    - catch(): Lo ejecutamos cuando algo sale mal.
+  //    - finally(): Se ejecuta SIEMPRE después del then() o el catch(). Se suele usar para hacer algún tipo de limpieza.
+  //
+  // TIP: Si tenemos una función que recibe exactamente los mismos elementos que luego se usan en la llamada a una función
+  //      interna y esa es la única línea, entonces podemos llamar directamente a esa función como referencia, sin requerir
+  //      los argumentos y sin indicarlos en la llamada, de esta forma:
+  //   findHero(id1).then(renderHero);
+  const id1 = '5d86371f25a058e5b1c8a65e';
+  findHero(id1)
+    .then((superHero) => renderHero(superHero))
+    .catch(renderError);
 };
 
 /**
