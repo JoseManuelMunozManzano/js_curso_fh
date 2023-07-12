@@ -9,6 +9,10 @@ Nuevo proyecto de Vite donde vamos a aprender lo relacionado a Callbacks, promes
 - Evitar los callback o promise hells
 - Funciones generadoras
 
+Fuentes creados en /src/concepts
+
+- 01-environments.js: Habla de variales de entorno
+
 NOTA: Proyecto creado con el comando `npm create vite@latest` con nombre advanced en Vanilla JavaScript.
 
 Luego hemos renombrado el proyecto a 08-advanced
