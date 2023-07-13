@@ -44,7 +44,7 @@ export const promiseComponent = (element) => {
     .then((superHero) => renderHero(superHero))
     .catch(renderError);
 
-  // Promise Hell
+  //! Promise Hell
   // Si una de las promesas sale mal salimos al catch, aunque todas las demás sean correctas.
   // Quizás es más fácil de leer, pero es LO MISMO que los callback hell.
   findHero(id1)
@@ -55,6 +55,31 @@ export const promiseComponent = (element) => {
         })
         .catch(renderError);
     })
+    .catch(renderError);
+
+  //? SOLUCIONES A LOS PROMISE HELL
+  //! Solución 1
+  // Una promesa que devuelve otra promesa. Solo hace falta manejar un único catch para todos.
+  // Esto funciona muy bien cuando las promesas dependen unas del resultado de otras.
+  let hero1;
+  findHero(id1)
+    .then((hero) => {
+      hero1 = hero;
+      return findHero(id2);
+    })
+    .then((hero2) => {
+      renderTwoHeroes(hero1, hero2);
+    })
+    .catch(renderError);
+
+  //! Solución 2
+  // La doble promesa anterior es independiente la una de la otra. Se les llama en cadena porque
+  // necesitamos el resultado de las dos para poder concatenar el resultado.
+  // Promise.all([]) nos permite ejecutar todas las promesas que son independientes entre si en un arreglo de promesas.
+  // Regresa en un arreglo todos los valores resueltos.
+  // Si una da error, todas las promesas fallan y va al catch.
+  Promise.all([findHero(id1), findHero(id2)])
+    .then(([hero1, hero2]) => renderTwoHeroes(hero1, hero2))
     .catch(renderError);
 };
 
