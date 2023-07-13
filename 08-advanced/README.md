@@ -15,6 +15,7 @@ Fuentes creados en /src/concepts
 - 02-callbacks.js
 - 03-promises.js
 - 04-promise-race.js
+- 05-async.js
 
 NOTA: Proyecto creado con el comando `npm create vite@latest` con nombre advanced en Vanilla JavaScript.
 
