@@ -18,6 +18,7 @@ Fuentes creados en /src/concepts
 - 05-async.js
 - 06-async-await.js
 - 07-async-await-optimizado.js
+- 08-for-await.js
 
 NOTA: Proyecto creado con el comando `npm create vite@latest` con nombre advanced en Vanilla JavaScript.
 
