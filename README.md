@@ -169,3 +169,29 @@ Vamos a crear una pequeña aplicación que se conecta a un backend, el cual nos 
 El objetivo es aprender las bases de las peticiones http.
 
 NOTA: Proyecto creado con el comando `npm create vite@latest` con nombre html-app en Vanilla JavaScript.
+
+### 10-crud-app
+
+Esta app aplica todo lo aprendido hasta el momento, que va desde documentación, generación de elementos, async-await, store, fetch y mucho más.
+
+En concreto:
+
+- Operaciones CRUD
+  - Create
+  - Read
+  - Update
+  - Delete
+- Sin frameworks o librerías externas
+- Modals
+- Mappers
+- Clases
+- Utilizar conversiones
+- Código limpio
+- Comprender las funcionalidades básicas de un Restful API de un backend
+- Montar un backend de pruebas
+- Generar y utilizar un store central para nuestro estado de la aplicación
+- Documentación de funciones
+
+NOTAS: Proyecto creado con el comando `npm create vite@latest` con nombre crud-app en Vanilla JavaScript.
+
+Luego hemos renombrado el proyecto a 10-crud-app
