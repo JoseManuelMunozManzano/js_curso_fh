@@ -1,0 +1,5 @@
+Los modelos son una representación de como queremos trabajar internamente en nuestra app.
+Vamos a trabajar con nuestros modelos, por lo que no nos va a importar que el backend regrese 
+nombres diferentes.
+
+Esto hará que nuestra app sea más robusta y tolerante a cambios.

@@ -1,0 +1,12 @@
+La idea de una carpeta mappers, o funciones mappers, es tomar la información que luce de una
+manera y la transformemos a otra.
+
+En nuestra app en concreto, en nuestros datos, vemos que hay campos cuyo nombre es camelCase 
+como isActive y otros que son snake_Case como first_name. Esto es ligeramente problemático
+por falta de consenso en cuanto a los nombres de campos.
+
+Se ha hecho a propósito para aprender como trabajar con un mapper y que este tipo de problemas
+no se trasladen al programa.
+
+Si el día de mañana se cambia otro campo a camelCase o snake_case, no nos va a afectar a nuestra
+app.
