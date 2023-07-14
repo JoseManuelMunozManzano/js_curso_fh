@@ -20,7 +20,7 @@ const fetchQuote = async () => {
  *
  * @param {HTMLDivElement} element
  */
-export const BreakingBadApp = async (element) => {
+export const BreakingBadApp = (element) => {
   document.querySelector('#app-title').innerHTML = 'Breaking Bad App';
   element.innerHTML = 'Loading...';
 
@@ -35,5 +35,13 @@ export const BreakingBadApp = async (element) => {
     element.replaceChildren(quoteLabel, authorLabel, nextQuoteButton);
   };
 
+  nextQuoteButton.addEventListener('click', async () => {
+    element.innerHTML = 'Loading...';
+    // Otra forma de hacerlo, ahora con async - await
+    const quote = await fetchQuote();
+    renderQuote(quote);
+  });
+
+  // Forma de hacerlo con promises
   fetchQuote().then(renderQuote);
 };
