@@ -161,3 +161,11 @@ Nuevo proyecto de Vite donde vamos a aprender lo relacionado a Callbacks, promes
 - Evitar los callback o promise hells
 - Funciones generadoras
 - Funciones generadoras asíncronas
+
+### 09-http-app
+
+Vamos a crear una pequeña aplicación que se conecta a un backend, el cual nos regresará información que usaremos en nuestra aplicación.
+
+El objetivo es aprender las bases de las peticiones http.
+
+NOTA: Proyecto creado con el comando `npm create vite@latest` con nombre html-app en Vanilla JavaScript.
