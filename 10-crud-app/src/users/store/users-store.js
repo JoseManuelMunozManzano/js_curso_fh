@@ -1,3 +1,5 @@
+import { loadUsersByPage } from '../use-cases/load-users-by-page';
+
 // No se exporta el store porque no queremos que nadie pueda manipularlo directamente desde fuera.
 const state = {
   currentPage: 0,
@@ -5,7 +7,7 @@ const state = {
 };
 
 const loadNextPage = async () => {
-  throw new Error('Not implemented');
+  await loadUsersByPage(state.currentPage + 1);
 };
 
 const loadPreviousPage = async () => {
