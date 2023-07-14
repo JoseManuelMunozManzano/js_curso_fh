@@ -12,7 +12,8 @@ const fetchQuote = async () => {
   const data = await res.json();
   console.log(data);
 
-  return data;
+  // Faltaba Devolver, del array, el objeto 0.
+  return data[0];
 };
 
 /**
@@ -23,6 +24,16 @@ export const BreakingBadApp = async (element) => {
   document.querySelector('#app-title').innerHTML = 'Breaking Bad App';
   element.innerHTML = 'Loading...';
 
-  const quote = await fetchQuote();
-  element.innerHTML = 'Tenemos data!!';
+  const quoteLabel = document.createElement('blockquote');
+  const authorLabel = document.createElement('h3');
+  const nextQuoteButton = document.createElement('button');
+  nextQuoteButton.innerText = 'Next Quote';
+
+  const renderQuote = (data) => {
+    quoteLabel.innerHTML = data.quote;
+    authorLabel.innerHTML = data.author;
+    element.replaceChildren(quoteLabel, authorLabel, nextQuoteButton);
+  };
+
+  fetchQuote().then(renderQuote);
 };
