@@ -1,3 +1,4 @@
+import { userModelToLocalhost } from '../mappers/user-to-localhost.mapper';
 import { User } from '../models/user';
 
 // Grabación y actualización. Lo que me dice si va a ser uno o lo otro es si tengo id.
@@ -9,14 +10,19 @@ import { User } from '../models/user';
 export const saveUser = async (userLike) => {
   const user = new User(userLike);
 
-  // TODO: aquí falta un mapper
+  if (!user.firstName || !user.lastName) throw `First & last name required`();
+
+  // Hay que mandarle al backend la información como el la está esperando,
+  // es decir, con campo first_name y last_name en vez de firstName y lastName
+  // que es como trabajamos en nuestra app.
+  const userToSave = userModelToLocalhost(user);
 
   if (user.id) {
     throw 'Update not implemented';
     return;
   }
 
-  const updatedUser = await createUser(user);
+  const updatedUser = await createUser(userToSave);
   return updatedUser;
 };
 
