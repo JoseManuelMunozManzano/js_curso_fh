@@ -1,5 +1,7 @@
 // Este css va a afectar de manera global a toda la app. Cuidado!
 import usersStore from '../../store/users-store';
+import { showModal } from '../render-modal/render-modal';
+
 import './render-table.css';
 
 // El html lo queremos en memoria. Por eso creamos una variable que vamos a estar modificando.
@@ -30,6 +32,20 @@ const createTable = () => {
 
 /**
  *
+ * @param {MouseEvent} ev
+ */
+const tableSelectListener = (ev) => {
+  // Por si se pulsa click en otro sitio de la fila de la tabla, que me salga null.
+  // Esto también se puede hacer por el nombre de la clase.
+  const element = ev.target.closest('.select-user');
+  if (!element) return;
+
+  const id = element.getAttribute('data-id');
+  showModal(id);
+};
+
+/**
+ *
  * @param {HTMLDivElement} element
  */
 export const renderTable = (element) => {
@@ -42,7 +58,7 @@ export const renderTable = (element) => {
     // Es append para no destruir lo que tenga elemento, como pasaría con innerHTML
     element.append(table);
 
-    // TODO: listeners a la table
+    table.addEventListener('click', tableSelectListener);
   }
 
   // Como la tabla ya está cargada, ahora solo tenemos que modificar su cuerpo
@@ -56,9 +72,9 @@ export const renderTable = (element) => {
       <td>${user.lastName}</td>
       <td>${user.isActive}</td>
       <td>
-        <a href="#/" data-id="${user.id}">Select</a>
+        <a href="#/" class="select-user" data-id="${user.id}">Select</a>
         |
-        <a href="#/" data-id="${user.id}">Delete</a>
+        <a href="#/" class="delete-user" data-id="${user.id}">Delete</a>
       </td>
     </tr>
     `;
