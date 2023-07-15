@@ -7,7 +7,11 @@ const state = {
 };
 
 const loadNextPage = async () => {
-  await loadUsersByPage(state.currentPage + 1);
+  const users = await loadUsersByPage(state.currentPage + 1);
+  if (users.length === 0) return;
+
+  state.currentPage += 1;
+  state.users = users;
 };
 
 const loadPreviousPage = async () => {
@@ -29,7 +33,7 @@ export default {
   reloadPage,
 
   // Como users es un objeto, para no mandar la referencia usamos el operador spread.
-  getUser: () => [...state.users],
+  getUsers: () => [...state.users],
 
   // Como currentPage es un primitivo NO PASA POR REFERENCIA, pasa por valor.
   getCurrentPage: () => state.currentPage,
