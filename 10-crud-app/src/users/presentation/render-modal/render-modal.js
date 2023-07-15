@@ -15,7 +15,8 @@ export const showModal = () => {
 export const hideModal = () => {
   modal?.classList.add('hide-modal');
 
-  // TODO: Reset del formulario
+  // Limpia la información del formulario
+  form?.reset();
 };
 
 /**
@@ -38,7 +39,43 @@ export const renderModal = (element) => {
 
   form.addEventListener('submit', (ev) => {
     ev.preventDefault();
-    console.log('Formulario enviado');
+
+    // Usamos formData() para evitar tener que hacer document.querySelector de cada uno
+    // de los elementos del formulario.
+    // La idea es aliviar el trabajo, evitando muchas referencias.
+    const formData = new FormData(form);
+
+    // Los campos check, si se desactivan, no aparecen en el formData. Se añade.
+    // Otra forma de solucionar esto es, en nuestro model, indicar que si no viene
+    // isActive por defecto su valor es false.
+    if (!formData.get('isActive')) {
+      formData.append('isActive', 'off');
+    }
+
+    const userLike = {};
+
+    // NOTA: iterator va a ser de esta forma: ['firstName', '']
+    //   La key (propiedad name del html) y su value siempre como string
+    // for (const iterator of formData) {}
+    for (const [key, value] of formData) {
+      // El balance es numérico
+      if (key === 'balance') {
+        userLike[key] = +value;
+        continue;
+      }
+
+      if (key === 'isActive') {
+        userLike[key] = value === 'on' ? true : false;
+        continue;
+      }
+
+      userLike[key] = value;
+    }
+
+    // console.log(userLike);
+    // TODO: guardar usuario
+
+    hideModal();
   });
 
   element.append(modal);
