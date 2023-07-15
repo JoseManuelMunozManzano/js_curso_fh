@@ -3,7 +3,7 @@
 Nuevo proyecto cuyo objetivo es aprender las nuevas funcionalidades ESNEXT. En concreto:
 
 - structuredClone
-- Array With
+- Array with() y at()
 - Métodos to
 
 NOTAS: Proyecto creado con el comando `npm create vite@latest` con nombre esnext en Vanilla JavaScript.
