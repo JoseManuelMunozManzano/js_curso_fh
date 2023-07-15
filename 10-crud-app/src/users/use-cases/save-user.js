@@ -1,3 +1,4 @@
+import { localhostUserToModel } from '../mappers/localhost-user.mapper';
 import { userModelToLocalhost } from '../mappers/user-to-localhost.mapper';
 import { User } from '../models/user';
 
@@ -17,13 +18,16 @@ export const saveUser = async (userLike) => {
   // que es como trabajamos en nuestra app.
   const userToSave = userModelToLocalhost(user);
 
+  let userUpdated;
+
   if (user.id) {
-    throw 'Update not implemented';
-    return;
+    userUpdated = await updateUser(userToSave);
+  } else {
+    userUpdated = await createUser(userToSave);
   }
 
-  const updatedUser = await createUser(userToSave);
-  return updatedUser;
+  // Y volvemos a pasar un mapper para convertirlo a datos con lo que nosotros trabajamos.
+  return localhostUserToModel(userUpdated);
 };
 
 /**
@@ -44,4 +48,27 @@ const createUser = async (user) => {
   console.log({ newUser });
 
   return newUser;
+};
+
+/**
+ *
+ * @param {Like<User>} user
+ */
+const updateUser = async (user) => {
+  const url = `${import.meta.env.VITE_BASE_URL}/users/${user.id}`;
+  // La diferencia entre PUT y PATCH es que con PUT reemplazamos todo el objeto
+  // y con PATCH actualizamos solo lo que le envío.
+  // Pero al final depende de como esté construido el backend.
+  const res = await fetch(url, {
+    method: 'PATCH',
+    body: JSON.stringify(user),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const updatedUser = await res.json();
+  console.log({ updatedUser });
+
+  return updatedUser;
 };
