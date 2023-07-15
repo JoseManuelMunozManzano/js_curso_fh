@@ -46,8 +46,16 @@ const onUserChanged = (updatedUser) => {
   }
 };
 
+// Si eliminamos un registro no queremos que se vean 9 registros (salvo que de verdad queden 9 registros en BD)
+// Queremos cargar de nuevo para que se vean siempre 10 registros.
 const reloadPage = async () => {
-  throw new Error('Not implemented');
+  const users = await loadUsersByPage(state.currentPage);
+  if (users.length === 0 && state.currentPage !== 1) {
+    await loadPreviousPage();
+    return;
+  }
+
+  state.users = users;
 };
 
 export default {

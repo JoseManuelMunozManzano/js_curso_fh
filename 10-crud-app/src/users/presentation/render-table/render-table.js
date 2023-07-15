@@ -1,6 +1,7 @@
 // Este css va a afectar de manera global a toda la app. Cuidado!
 import usersStore from '../../store/users-store';
 import { showModal } from '../render-modal/render-modal';
+import { deleteUserById } from '../../use-cases/delete-user-by-id';
 
 import './render-table.css';
 
@@ -46,6 +47,27 @@ const tableSelectListener = (ev) => {
 
 /**
  *
+ * @param {MouseEvent} ev
+ */
+const tableDeleteListener = async (ev) => {
+  const element = ev.target.closest('.delete-user');
+  if (!element) return;
+
+  const id = element.getAttribute('data-id');
+
+  try {
+    await deleteUserById(id);
+    await usersStore.reloadPage();
+    document.querySelector('#current-page').innerText = usersStore.getCurrentPage();
+    renderTable();
+  } catch (error) {
+    console.log(error);
+    alert('No se pudo eliminar');
+  }
+};
+
+/**
+ *
  * @param {HTMLDivElement} element
  */
 export const renderTable = (element) => {
@@ -59,6 +81,7 @@ export const renderTable = (element) => {
     element.append(table);
 
     table.addEventListener('click', tableSelectListener);
+    table.addEventListener('click', tableDeleteListener);
   }
 
   // Como la tabla ya está cargada, ahora solo tenemos que modificar su cuerpo
