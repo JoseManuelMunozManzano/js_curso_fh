@@ -1,3 +1,4 @@
+import { User } from '../models/user';
 import { loadUsersByPage } from '../use-cases/load-users-by-page';
 
 // No se exporta el store porque no queremos que nadie pueda manipularlo directamente desde fuera.
@@ -33,8 +34,16 @@ export default {
   reloadPage,
 
   // Como users es un objeto, para no mandar la referencia usamos el operador spread.
+  /**
+   *
+   * @returns {User[]}
+   */
   getUsers: () => [...state.users],
 
   // Como currentPage es un primitivo NO PASA POR REFERENCIA, pasa por valor.
+  /**
+   *
+   * @returns {Number}
+   */
   getCurrentPage: () => state.currentPage,
 };

@@ -1,0 +1,6 @@
+/* Esto se va a aplicar a todas las tablas */
+table {
+  background-color: rgba(0, 0, 0, 0.348);
+  border-radius: 5px;
+  padding: 5px;
+}
